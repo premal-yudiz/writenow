@@ -1,0 +1,180 @@
+<!doctype html>
+<html lang="en">
+{% load static %}
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>WriteNow.IO</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,400;0,700;0,900;1,400;1,700;1,900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+        rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,400;0,700;0,900;1,400;1,700;1,900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&family=Sofia&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous"> 
+        <!-- Link Bootstrap Icons CSS file from CDN -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css" rel="stylesheet">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+
+
+        
+        
+        <link rel="stylesheet" href="{% static 'assets/css/style.css' %}">
+        <style>
+            .radio_box {
+                height:auto !important; 
+                width: auto !important;
+            }
+        </style>
+</head>
+
+<body>
+   <div class="main-section d-flex w-100 h-100">
+        <div class="sidebar">               
+                <div class=" flex-shrink-0 pt-4 bg-white h-100 d-flex flex-column">
+                    <div class="py-3 d-flex justify-content-center align-items-center">
+                        <a href="{% url 'index' %}" class="d-flex align-items-center justify-content-center logo"> 
+                            <img src="{% static 'assets/images/logo.svg' %}" alt="logo" class="img-fluid"> 
+                        </a> 
+                    </div>
+                    <nav class="overflow-y-auto "> 
+                        <ul class="nav nav-pills flex-column mb-auto px-4 position-relative">
+                            <li class="nav-item">
+                                <a href="{% url 'index' %}" class="nav-link {% if request.path == '/index/' %}active{% endif %} " aria-current="page">
+                                    <svg width="15" height="15" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path
+                                            d="M6.92307 0.576922C6.92307 0.259615 6.66346 0 6.34615 0H0.576923C0.259615 0 0 0.259615 0 0.576922V6.34614C0 6.66344 0.259615 6.92306 0.576923 6.92306H6.34615C6.66346 6.92306 6.92307 6.66344 6.92307 6.34614V0.576922Z"
+                                            fill="#292D2B" />
+                                        <path
+                                            d="M15 0.576922C15 0.259615 14.7404 0 14.4231 0H8.65383C8.33652 0 8.0769 0.259615 8.0769 0.576922V6.34614C8.0769 6.66344 8.33652 6.92306 8.65383 6.92306H14.4231C14.7404 6.92306 15 6.66344 15 6.34614V0.576922Z"
+                                            fill="#292D2B" />
+                                        <path
+                                            d="M8.65383 15H14.4231C14.7404 15 15 14.7403 15 14.423V8.65383C15 8.33652 14.7404 8.0769 14.4231 8.0769H8.65383C8.33652 8.0769 8.0769 8.33652 8.0769 8.65383V14.423C8.0769 14.7403 8.33652 15 8.65383 15Z"
+                                            fill="#292D2B" />
+                                        <path
+                                            d="M6.34615 8.0769H0.576923C0.259615 8.0769 0 8.33652 0 8.65383V14.423C0 14.7403 0.259615 15 0.576923 15H6.34615C6.66346 15 6.92307 14.7403 6.92307 14.423V8.65383C6.92307 8.33652 6.66346 8.0769 6.34615 8.0769Z"
+                                            fill="#292D2B" />
+                                    </svg>
+                                    Dashboard
+                                </a>
+                            </li>
+                            <li>
+                                <a href="{% url 'blog_writing' %}" class="nav-link {% if request.path == '/blog_writing/' %}active{% endif %} ">
+                                <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path
+                                        d="M9.96094 7.89062C10.3925 7.89062 10.7422 8.24036 10.7422 8.67188C10.7422 9.10339 10.3925 9.45312 9.96094 9.45312C9.52942 9.45312 9.17969 9.10339 9.17969 8.67188C9.17969 8.24036 9.52942 7.89062 9.96094 7.89062ZM12.6953 8.67188C12.6953 9.10339 13.045 9.45312 13.4766 9.45312C13.9081 9.45312 14.2578 9.10339 14.2578 8.67188C14.2578 8.24036 13.9081 7.89062 13.4766 7.89062C13.045 7.89062 12.6953 8.24036 12.6953 8.67188ZM5.66406 8.67188C5.66406 9.10339 6.01379 9.45312 6.44531 9.45312C6.87683 9.45312 7.22656 9.10339 7.22656 8.67188C7.22656 8.24036 6.87683 7.89062 6.44531 7.89062C6.01379 7.89062 5.66406 8.24036 5.66406 8.67188ZM19.313 15.9985C20.2274 16.9128 20.2274 18.3997 19.3135 19.3135C18.8567 19.7704 18.2564 19.9989 17.6562 19.9989C17.0561 19.9989 16.4558 19.7704 15.999 19.3135L11.7104 15.0345C11.6193 14.9435 11.5521 14.8317 11.5147 14.7084L10.5806 11.6333C10.4977 11.3606 10.5699 11.0646 10.7689 10.8606C10.9679 10.6567 11.2621 10.5774 11.5367 10.6534L14.6899 11.5268C14.8198 11.5628 14.938 11.6316 15.0334 11.7268L19.313 15.9985ZM12.9527 14.0668L15.8469 16.9545L16.9519 15.8495L14.0749 12.9779L12.4886 12.5385L12.9527 14.0668ZM18.2086 17.1039L18.0579 16.9533L16.953 18.0582L17.1033 18.208C17.4084 18.5133 17.9041 18.5133 18.2086 18.2086C18.5133 17.9041 18.5133 17.4084 18.2086 17.1039ZM10.4346 16.1896C10.2902 16.1958 10.144 16.199 10 16.199C8.74374 16.199 7.53433 15.9651 6.40549 15.5038C6.21323 15.4254 5.99747 15.4266 5.80612 15.5074L2.24884 17.009L3.44742 14.1698C3.56461 13.8922 3.51166 13.5718 3.31116 13.3466C2.16721 12.0615 1.5625 10.5238 1.5625 8.9003C1.5625 4.85428 5.3476 1.5625 10 1.5625C14.6524 1.5625 18.4375 4.85428 18.4375 8.9003C18.4375 9.85977 18.2019 10.8231 17.7371 11.7632C17.5459 12.15 17.7045 12.6186 18.0913 12.8098C18.4781 13.0009 18.9467 12.8424 19.1379 12.4556C19.7099 11.2982 20 10.1021 20 8.9003C20 3.99261 15.5141 0 10 0C4.48608 0 0 3.99261 0 8.9003C0 10.7527 0.628052 12.507 1.82175 14.0031L0.0614929 18.1728C-0.0621033 18.4656 0.00411989 18.8042 0.228882 19.0289C0.378418 19.1785 0.578156 19.2578 0.781403 19.2578C0.883789 19.2578 0.987091 19.2377 1.08505 19.1963L6.12137 17.0703C7.3497 17.5291 8.65295 17.7615 10 17.7615C10.1666 17.7615 10.3358 17.7577 10.5029 17.7505C10.934 17.7316 11.2682 17.3669 11.2492 16.9359C11.2305 16.5048 10.865 16.1696 10.4346 16.1896Z"
+                                        fill="#292D2B" />
+                                </svg>
+                                Blog/Essay
+                                </a>
+                            </li>
+                            <li>
+                                <a href="{% url 'email' %}" class="nav-link {% if request.path == '/email_writing/' %}active{% endif %}">
+                                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <g clip-path="url(#clip0_33_3271)">
+                                            <path
+                                                d="M17.0001 2H3.00006C2.20441 2 1.44135 2.31607 0.878741 2.87868C0.316132 3.44129 6.10352e-05 4.20435 6.10352e-05 5V15C6.10352e-05 15.7957 0.316132 16.5587 0.878741 17.1213C1.44135 17.6839 2.20441 18 3.00006 18H17.0001C17.7957 18 18.5588 17.6839 19.1214 17.1213C19.684 16.5587 20.0001 15.7957 20.0001 15V5C20.0001 4.20435 19.684 3.44129 19.1214 2.87868C18.5588 2.31607 17.7957 2 17.0001 2ZM16.3301 4L10.0001 8.75L3.67006 4H16.3301ZM17.0001 16H3.00006C2.73484 16 2.48049 15.8946 2.29295 15.7071C2.10542 15.5196 2.00006 15.2652 2.00006 15V5.25L9.40006 10.8C9.57316 10.9298 9.78369 11 10.0001 11C10.2164 11 10.427 10.9298 10.6001 10.8L18.0001 5.25V15C18.0001 15.2652 17.8947 15.5196 17.7072 15.7071C17.5196 15.8946 17.2653 16 17.0001 16Z"
+                                                fill="#292D2B" />
+                                        </g>
+                                        <defs>
+                                            <clipPath id="clip0_33_3271">
+                                                <rect width="20" height="20" fill="white" />
+                                            </clipPath>
+                                        </defs>
+                                    </svg>
+                                    Email Writing
+                                </a>
+                            </li>
+                            <li>
+                                <a href="{% url 'custom' %}" class="nav-link {% if request.path == '/custom_content/' %}active{% endif %} ">
+                                    <svg width="21" height="20" viewBox="0 0 21 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path fill-rule="evenodd" clip-rule="evenodd"
+                                            d="M5.48261 20C5.19746 20 4.96633 19.7689 4.96633 19.4837C4.96633 19.1986 5.19746 18.9674 5.48261 18.9674H7.46622C7.60492 18.1814 7.6667 17.3114 7.59963 16.5309H1.45879C0.653069 16.5309 0 15.8778 0 15.072V3.40741C0 2.60169 0.653069 1.94862 1.45879 1.94862H8.32246L8.36822 1.8694L10.7498 3.24439L7.54338 8.79812L5.16177 7.42313L7.79784 2.85722H1.45879C1.1546 2.85722 0.908605 3.10322 0.908605 3.40741V13.3865H19.412V3.40741C19.412 3.10322 19.166 2.85722 18.8618 2.85722C16.485 2.85722 14.1081 2.85722 11.7313 2.85722L8.78124 1.15396L9.05041 0.687745C9.4301 0.0300908 10.2711 -0.195254 10.9287 0.184437C11.5489 0.542485 11.7845 1.31066 11.491 1.94857H18.8618C19.6675 1.94857 20.3206 2.60164 20.3206 3.40737V15.072C20.3206 15.8777 19.6675 16.5308 18.8618 16.5308H12.6742C12.6087 17.3114 12.6812 18.1814 12.8308 18.9674H14.8203C15.1055 18.9674 15.3366 19.1985 15.3366 19.4837C15.3366 19.7688 15.1055 20 14.8203 20H5.48261V20ZM15.7193 8.22357C15.7193 7.99562 15.5348 7.81054 15.3063 7.81054H11.0279C10.7997 7.81054 10.6149 7.99562 10.6149 8.22357C10.6149 8.45151 10.7998 8.63659 11.0279 8.63659H15.3063C15.5348 8.63663 15.7193 8.45151 15.7193 8.22357ZM5.84776 10.0155L6.9238 9.39423L4.95522 8.25768V10.0197C4.75507 10.0484 4.60122 10.2205 4.60122 10.4285C4.60122 10.6566 4.78613 10.8415 5.01424 10.8415H15.3062C15.5343 10.8415 15.7193 10.6566 15.7193 10.4285C15.7193 10.2004 15.5343 10.0155 15.3062 10.0155H5.84776Z"
+                                            fill="#292D2B" />
+                                    </svg>
+                                    Custom Content
+                                </a>
+                            </li>
+                            <li>
+                                <a href="{% url 'saved_templates' %}" class="nav-link {% if request.path == '/saved_templates/' %}active{% endif %}">
+                                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path fill-rule="evenodd" clip-rule="evenodd"
+                                            d="M2.5 4.16667C2.5 3.2462 3.2462 2.5 4.16667 2.5H15.8333C16.7538 2.5 17.5 3.24621 17.5 4.16667V5.83333C17.5 6.75379 16.7538 7.5 15.8333 7.5H4.16667C3.2462 7.5 2.5 6.7538 2.5 5.83333V4.16667ZM15.8333 4.16667H4.16667V5.83333H15.8333V4.16667Z"
+                                            fill="#292D2B" />
+                                        <path fill-rule="evenodd" clip-rule="evenodd"
+                                            d="M2.5 10.8334C2.5 9.91291 3.24621 9.16675 4.16667 9.16675H7.5C8.4205 9.16675 9.16667 9.91291 9.16667 10.8334V15.8334C9.16667 16.7539 8.4205 17.5001 7.5 17.5001H4.16667C3.24621 17.5001 2.5 16.7539 2.5 15.8334V10.8334ZM7.5 10.8334H4.16667V15.8334H7.5V10.8334Z"
+                                            fill="#292D2B" />
+                                        <path fill-rule="evenodd" clip-rule="evenodd"
+                                            d="M10.8333 10.0001C10.8333 9.53983 11.2064 9.16675 11.6666 9.16675H16.6666C17.1269 9.16675 17.5 9.53983 17.5 10.0001C17.5 10.4603 17.1269 10.8334 16.6666 10.8334H11.6666C11.2064 10.8334 10.8333 10.4603 10.8333 10.0001Z"
+                                            fill="#292D2B" />
+                                        <path fill-rule="evenodd" clip-rule="evenodd"
+                                            d="M10.8333 13.3333C10.8333 12.8731 11.2064 12.5 11.6666 12.5H16.6666C17.1269 12.5 17.5 12.8731 17.5 13.3333C17.5 13.7936 17.1269 14.1667 16.6666 14.1667H11.6666C11.2064 14.1667 10.8333 13.7936 10.8333 13.3333Z"
+                                            fill="#292D2B" />
+                                        <path fill-rule="evenodd" clip-rule="evenodd"
+                                            d="M10.8333 16.6666C10.8333 16.2063 11.2064 15.8333 11.6666 15.8333H16.6666C17.1269 15.8333 17.5 16.2063 17.5 16.6666C17.5 17.1268 17.1269 17.4999 16.6666 17.4999H11.6666C11.2064 17.4999 10.8333 17.1268 10.8333 16.6666Z"
+                                            fill="#292D2B" />
+                                    </svg>
+                                    Saved Template
+                                </a>
+                            </li>
+                        
+                        </ul> 
+                    </nav>
+                        <div class="mt-auto"> 
+                            <div class="py-3 text-center "> 
+                                    <img src="{% static 'assets/images/upgrade-plan.svg' %}" alt="upgrade-plan" class="img-fluid upgrade-img"> 
+                            </div>
+                            <ul class="nav nav-pills flex-column px-4"> 
+                                <li>
+                                    <a href="{% url 'logout' %}" class="nav-link {% if request.path == '/logout/' %}active{% endif %} ">
+                                        <svg width="15" height="15" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                            <path
+                                                d="M10.084 13.9535H13.8712V1.04651H10.084C9.77173 1.04651 9.51963 0.812791 9.51963 0.523256C9.51963 0.233721 9.77173 0 10.084 0H14.4356C14.7479 0 15 0.233721 15 0.523256V14.4767C15 14.7663 14.7479 15 14.4356 15H10.084C9.77173 15 9.51963 14.7663 9.51963 14.4767C9.51963 14.1872 9.77173 13.9535 10.084 13.9535Z"
+                                                fill="#292D2B" />
+                                            <path
+                                                d="M0.566253 6.97683H7.32218V5.46287C7.32218 5.27101 7.43694 5.09311 7.61943 5.00241C7.80192 4.91171 8.02392 4.92043 8.19701 5.02683L11.5326 7.06229C11.6907 7.15822 11.7866 7.32392 11.7866 7.50008C11.7866 7.67625 11.6907 7.8402 11.5326 7.93787L8.19701 9.97334C8.10294 10.0309 7.9957 10.0588 7.88658 10.0588C7.7944 10.0588 7.70221 10.0379 7.61943 9.99601C7.43694 9.90532 7.32218 9.72741 7.32218 9.53555V8.02334H0.564371C0.252067 8.02334 -3.43323e-05 7.78962 -3.43323e-05 7.50008C-3.43323e-05 7.21055 0.253948 6.97683 0.566253 6.97683Z"
+                                                fill="#292D2B" />
+                                        </svg>
+                                        Log Out
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    
+                </div>
+        </div>
+        <div class="wrapper h-100">
+            <div class="d-flex align-items-center justify-content-between bg-white py-3 px-5">                
+                <div class="search-bar">
+                    <input class="form-control me-2" type="search" placeholder="Search here..." aria-label="Search">
+                </div>
+                <div>   
+                    <div class="dropdown">
+                        <a href="#" class="d-flex align-items-center dropdown-toggle text-decoration-none profile-menu text-light-secondary"
+                            data-bs-toggle="dropdown" aria-expanded="false">
+                            <img src="{% static 'assets/images/profile.jpg' %}" alt="profile-image" width="34" height="34" class="rounded-3 me-2">
+                            <span>{{ request.user.username }}</span>
+                        </a>
+                        <ul class="dropdown-menu text-small shadow profile-dropdown text-light-secondary p-1">
+                            <li><a class="dropdown-item" href="{% url 'logout' %}">Sign out</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            {% block content %}
+            {% endblock %}
+
+        </div> 
+
+    </div>
+    
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>

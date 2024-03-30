@@ -1,0 +1,281 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+
+            <div class="page-content p-50">
+
+                <div class="page-header d-flex align-items-center  justify-content-between pb-lg-4 pb-2">
+                    <div class="w-75">
+                        <h2 class="fs-32 mb-0">
+                            Email Writing
+                        </h2>
+                    </div>
+                    <div>
+
+                    </div>
+                </div>
+                <div class="blog-wrapper bg-white p-50 mb-30">
+                    <form method="post" id="email-form">
+                         {% csrf_token %}
+
+                        <div class="mb-30 radio-check-group">
+                            <label for="text1" class="form-label mb-3">Choose Options <svg width="16" height="16"
+                                    viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path
+                                        d="M8 0C3.57841 0 0 3.578 0 8C0 12.4215 3.578 16 8 16C12.4216 16 16 12.422 16 8C16 3.57847 12.422 0 8 0ZM8 14.8837C4.20431 14.8837 1.11628 11.7957 1.11628 8C1.11628 4.20428 4.20431 1.11628 8 1.11628C11.7957 1.11628 14.8837 4.20428 14.8837 8C14.8837 11.7957 11.7957 14.8837 8 14.8837Z"
+                                        fill="#666666" fill-opacity="0.5" />
+                                    <path
+                                        d="M8.0003 6.6687C7.52642 6.6687 7.18945 6.86883 7.18945 7.16367V11.1757C7.18945 11.4285 7.52642 11.6812 8.0003 11.6812C8.45311 11.6812 8.82164 11.4285 8.82164 11.1757V7.16361C8.82164 6.86879 8.45311 6.6687 8.0003 6.6687Z"
+                                        fill="#666666" fill-opacity="0.5" />
+                                    <path
+                                        d="M8.00019 4.19409C7.51578 4.19409 7.13672 4.54159 7.13672 4.94175C7.13672 5.34194 7.51581 5.69997 8.00019 5.69997C8.47406 5.69997 8.85319 5.34194 8.85319 4.94175C8.85319 4.54159 8.47403 4.19409 8.00019 4.19409Z"
+                                        fill="#666666" fill-opacity="0.5" />
+                                </svg>
+                            </label>
+                            <div class="tab-list">
+                                <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
+                                    <li class="nav-item" role="presentation">
+                                        <a href="#tab1" class="align-items-center d-flex nav-link active"
+                                            id="pills-home-tab">
+                                            <input required checked class="form-check-input" type="radio" name="emailType" id="Radios1"
+                                                value="custom" {% if email_type == 'custom' %}checked{% endif %}>
+                                            <label class="form-check-label ms-2" for="Radios1">
+                                                Custom Email
+                                            </label>
+                                        </a>
+                                    </li>
+                                    <li class="nav-item" role="presentation">
+                                        <a href="#tab2" class="align-items-center d-flex nav-link"
+                                            id="pills-profile-tab">
+                                            <input required class="form-check-input" type="radio" name="emailType" id="Radios2"
+                                                value="cold" {% if email_type == 'cold' %}checked{% endif %}>
+                                            <label class="form-check-label ms-2" for="Radios2">
+                                                Cold Outreach Email
+                                            </label>
+                                        </a>
+                                    </li>
+                                    <li class="nav-item" role="presentation">
+                                        <a href="#tab3" class="align-items-center d-flex nav-link"
+                                            id="pills-contact-tab">
+                                            <input required class="form-check-input" type="radio" name="emailType" id="Radios3"
+                                                value="followup" {% if email_type == 'followup' %}checked{% endif %}>
+                                            <label class="form-check-label ms-2" for="Radios3">
+                                                Followup
+                                            </label>
+                                        </a>
+                                    </li>
+                                    <li class="nav-item" role="presentation">
+                                        <a href="#tab4" class="align-items-center d-flex nav-link"
+                                            id="pills-contact1-tab">
+                                            <input required class="form-check-input" type="radio" name="emailType" id="Radios4"
+                                                value="promotional" {% if email_type == 'promotional' %}checked{% endif %}>
+                                            <label class="form-check-label ms-2" for="Radios4">
+                                                Promotional Email
+                                            </label>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="tab-content" id="pills-tabContent">
+                                <div class="tab-pane fade show active" id="pills-home" role="tabpanel"
+                                    aria-labelledby="pills-home-tab">
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <label for="text1" class="form-label mb-3">Email Subject <svg width="16"
+                                                    height="16" viewBox="0 0 16 16" fill="none"
+                                                    xmlns="http://www.w3.org/2000/svg">
+                                                    <path
+                                                        d="M8 0C3.57841 0 0 3.578 0 8C0 12.4215 3.578 16 8 16C12.4216 16 16 12.422 16 8C16 3.57847 12.422 0 8 0ZM8 14.8837C4.20431 14.8837 1.11628 11.7957 1.11628 8C1.11628 4.20428 4.20431 1.11628 8 1.11628C11.7957 1.11628 14.8837 4.20428 14.8837 8C14.8837 11.7957 11.7957 14.8837 8 14.8837Z"
+                                                        fill="#666666" fill-opacity="0.5" />
+                                                    <path
+                                                        d="M8.0003 6.6687C7.52642 6.6687 7.18945 6.86883 7.18945 7.16367V11.1757C7.18945 11.4285 7.52642 11.6812 8.0003 11.6812C8.45311 11.6812 8.82164 11.4285 8.82164 11.1757V7.16361C8.82164 6.86879 8.45311 6.6687 8.0003 6.6687Z"
+                                                        fill="#666666" fill-opacity="0.5" />
+                                                    <path
+                                                        d="M8.00019 4.19409C7.51578 4.19409 7.13672 4.54159 7.13672 4.94175C7.13672 5.34194 7.51581 5.69997 8.00019 5.69997C8.47406 5.69997 8.85319 5.34194 8.85319 4.94175C8.85319 4.54159 8.47403 4.19409 8.00019 4.19409Z"
+                                                        fill="#666666" fill-opacity="0.5" />
+                                                </svg>
+                                            </label>
+                                            <input type="text" class="form-control" name="emailSubject" id="text1" placeholder="Enter Email Subject" value="{{ subject }}" required>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <label for="text2" class="form-label mb-3">Keywords <svg width="16"
+                                                    height="16" viewBox="0 0 16 16" fill="none"
+                                                    xmlns="http://www.w3.org/2000/svg">
+                                                    <path
+                                                        d="M8 0C3.57841 0 0 3.578 0 8C0 12.4215 3.578 16 8 16C12.4216 16 16 12.422 16 8C16 3.57847 12.422 0 8 0ZM8 14.8837C4.20431 14.8837 1.11628 11.7957 1.11628 8C1.11628 4.20428 4.20431 1.11628 8 1.11628C11.7957 1.11628 14.8837 4.20428 14.8837 8C14.8837 11.7957 11.7957 14.8837 8 14.8837Z"
+                                                        fill="#666666" fill-opacity="0.5" />
+                                                    <path
+                                                        d="M8.0003 6.6687C7.52642 6.6687 7.18945 6.86883 7.18945 7.16367V11.1757C7.18945 11.4285 7.52642 11.6812 8.0003 11.6812C8.45311 11.6812 8.82164 11.4285 8.82164 11.1757V7.16361C8.82164 6.86879 8.45311 6.6687 8.0003 6.6687Z"
+                                                        fill="#666666" fill-opacity="0.5" />
+                                                    <path
+                                                        d="M8.00019 4.19409C7.51578 4.19409 7.13672 4.54159 7.13672 4.94175C7.13672 5.34194 7.51581 5.69997 8.00019 5.69997C8.47406 5.69997 8.85319 5.34194 8.85319 4.94175C8.85319 4.54159 8.47403 4.19409 8.00019 4.19409Z"
+                                                        fill="#666666" fill-opacity="0.5" />
+                                                </svg>
+                                            </label>
+                                            <input type="text" class="form-control" name="emailKeywords" id="text2" placeholder="Enter Keyword" value="{{ keyword }}" required>
+                                        </div>
+                                    </div>
+                                </div>
+                         
+                            </div>
+                        </div>
+                        <div class="m-0 radio-check-group">
+                            <label for="text1" class="form-label mb-3">Length <svg width="16" height="16"
+                                    viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path
+                                        d="M8 0C3.57841 0 0 3.578 0 8C0 12.4215 3.578 16 8 16C12.4216 16 16 12.422 16 8C16 3.57847 12.422 0 8 0ZM8 14.8837C4.20431 14.8837 1.11628 11.7957 1.11628 8C1.11628 4.20428 4.20431 1.11628 8 1.11628C11.7957 1.11628 14.8837 4.20428 14.8837 8C14.8837 11.7957 11.7957 14.8837 8 14.8837Z"
+                                        fill="#666666" fill-opacity="0.5" />
+                                    <path
+                                        d="M8.0003 6.6687C7.52642 6.6687 7.18945 6.86883 7.18945 7.16367V11.1757C7.18945 11.4285 7.52642 11.6812 8.0003 11.6812C8.45311 11.6812 8.82164 11.4285 8.82164 11.1757V7.16361C8.82164 6.86879 8.45311 6.6687 8.0003 6.6687Z"
+                                        fill="#666666" fill-opacity="0.5" />
+                                    <path
+                                        d="M8.00019 4.19409C7.51578 4.19409 7.13672 4.54159 7.13672 4.94175C7.13672 5.34194 7.51581 5.69997 8.00019 5.69997C8.47406 5.69997 8.85319 5.34194 8.85319 4.94175C8.85319 4.54159 8.47403 4.19409 8.00019 4.19409Z"
+                                        fill="#666666" fill-opacity="0.5" />
+                                </svg>
+                            </label>
+                            <div class="d-flex gap-4">
+                                <div class="align-items-center d-flex form-check">
+                                    <input required checked class="form-check-input" type="radio" name="length" id="Radios5"
+                                        value="short" {% if length == 'short' %}checked{% endif %}>
+                                    <label class="form-check-label ms-2" for="Radios5">
+                                        Short
+                                    </label>
+                                </div>
+                                <div class="align-items-center d-flex form-check">
+                                    <input required class="form-check-input" type="radio" name="length" id="Radios6"
+                                        value="medium" {% if length == 'medium' %}checked{% endif %}>
+                                    <label class="form-check-label ms-2" for="Radios6">
+                                        Medium
+                                    </label>
+                                </div>
+                                <div class="align-items-center d-flex form-check">
+                                    <input required class="form-check-input" type="radio" name="length" id="Radios7"
+                                        value="long" {% if length == 'long' %}checked{% endif %}>
+                                    <label class="form-check-label ms-2" for="Radios7">
+                                        Long
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                <div class="d-flex justify-content-end content-btn">
+                    <button type="submit" class="btn btn-primary fs-16 fw-semibold py">Create Content</button>
+                </div>
+            </form>
+            </div>
+     
+            <div class="generated-email-content" style="display: none;" id = "content-div">
+                <div class="header-and-button">
+                    <h2>Generated Email Content</h2>
+                    <button id="copy-button" class="btn btn-outline-primary" style="display: none;">
+                        <i class="bi bi-clipboard"></i> Copy
+                    </button>
+                </div>
+                <div id="loader" class="loader" style="display: none;"></div> 
+
+                <div class="email-content generate-content" id="email-content">
+                    <!-- Empty container to hold dynamically generated content -->
+                </div>
+            </div>
+            </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            var loader = document.getElementById('loader');
+
+
+            document.getElementById('email-form').addEventListener('submit', function (event) {
+                event.preventDefault(); // Prevent default form submission behavior
+                loader.style.display = 'block'; // Show the loader
+                document.getElementById('content-div').style.display = 'block';
+
+
+    
+                var form = this;
+                var formData = new FormData(form);
+
+                // Clear the email content div
+                var emailContentDiv = document.getElementById('email-content');
+                emailContentDiv.innerHTML = '';
+    
+                fetch('{% url "email" %}', {
+                    method: 'POST',
+                    body: formData,
+                    headers: {
+                        'X-Requested-With': 'XMLHttpRequest', // Add this header to indicate an AJAX request
+                        'X-CSRFToken': '{{ csrf_token }}' // Add CSRF token for security
+                    }
+                })
+                .then(response => {
+                    var reader = response.body.getReader();
+
+                    var decoder = new TextDecoder();
+                    var buffer = '';
+
+                    var readChunk = function () {
+                        reader.read().then(({ done, value }) => {
+                            if (done) {
+                                // Check if there is remaining content in the buffer
+                                if (buffer.length > 0) {
+                                    emailContentDiv.innerHTML += buffer + '<br>';
+                                    emailContentDiv.scrollTop = emailContentDiv.scrollHeight;
+                                    document.getElementById('copy-button').style.display = 'inline-block';
+                                    // document.querySelector('.generated-email-content').style.display = 'block';
+                                }
+                                loader.style.display = 'none'; // Hide the loader when content is displayed
+
+                                return;
+                            }
+
+                            buffer += decoder.decode(value, { stream: true });
+
+                            var indexOfNewline = buffer.indexOf('\n');
+
+                            while (indexOfNewline !== -1) {
+                                var chunk = buffer.substring(0, indexOfNewline);    
+                                buffer = buffer.substring(indexOfNewline + 1);
+
+                                emailContentDiv.innerHTML += chunk + '<br>';
+                                emailContentDiv.scrollTop = emailContentDiv.scrollHeight;
+
+                                indexOfNewline = buffer.indexOf('\n');
+                            }
+
+                            // if (buffer.length > 0) {
+                            //     emailContentDiv.innerHTML += buffer + '<br>';
+                            //     emailContentDiv.scrollTop = emailContentDiv.scrollHeight;
+                            // }
+
+                            readChunk();
+                        });
+                    };
+
+                    readChunk();
+                })
+                   
+                .catch(error => {
+                    loader.style.display = 'none'; // Hide the loader if there's an error
+
+                });
+            });
+
+
+        // Add the script for the copy button here
+            var copyButton = document.getElementById('copy-button');
+            copyButton.addEventListener('click', function () {
+                var emailContentDiv = document.getElementById('email-content');
+                var range = document.createRange();
+                range.selectNode(emailContentDiv);
+                window.getSelection().removeAllRanges();
+                window.getSelection().addRange(range);
+                document.execCommand('copy');
+                window.getSelection().removeAllRanges();
+            });
+
+        });
+    </script>
+  
+
+
+    
+{% endblock %}

@@ -1,0 +1,752 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+            <div class="page-content p-50">
+                <div class="page-header d-flex align-items-center  justify-content-between pb-lg-4 pb-2">
+                    <div class="w-75">
+                        <h2 class="fs-32 mb-0">
+                            Saved Template
+                        </h2>
+                    </div>
+                </div>
+
+                <!-- Blog Modal -->
+                <div id="popupForm" class="modal fade">
+                    <div class="modal-dialog modal-dialog-centered">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title">Pop-up Form</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <a href="{% url 'saved_templates' %}" style="text-decoration: none; color: inherit;"><span aria-hidden="true">&times;</span></a>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                <form method="post" id="myForm">
+                                    <!-- Your form fields here -->
+                                    <div class="form-group">
+                                        <label for="name">Template Name:</label>
+                                        <input type="text" id="name" name="name" class="form-control" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="subject">Blog Subject:</label>
+                                        <input type="text" id="subject" name="subject" class="form-control" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="keyword">Keywords:</label>
+                                        <input type="text" id="keyword" name="keyword" class="form-control" required>
+                                    </div>
+                                    <h3>Length:</h3>
+                                    <div class="form-group">
+                                        <input type="radio" id="short" name="length" value="short" class="radio_box" required checked>
+                                            <label for="short">Short</label>&nbsp;
+                                        <input type="radio" id="medium" name="length" value="medium" class="radio_box" required>
+                                            <label for="medium">Medium</label>&nbsp;
+                                        <input type="radio" id="long" name="length" value="long" class="radio_box" required>
+                                            <label for="long">Long</label>  
+                                        <input type="hidden" id="sign_pk_data">
+
+                                    </div>
+                                    <button type="submit" class="btn btn-primary">Submit</button>
+                                    <!-- <button type="button" class="btn btn-danger" id="deleteTemplate">Delete</button> -->
+                                    <button type="button" class="btn btn-danger" id="deleteTemplate" style="display: none;">Delete</button>
+                                    <button type="button" class="btn btn-success" id="generateButtonBlog" style="display: none;">Use this Template</button>
+
+
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+                <!--  EmailModal -->
+                <div id="email_pop_up" class="modal fade">
+                    <div class="modal-dialog modal-dialog-centered">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title">Pop-up Form</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <a href="{% url 'saved_templates' %}" style="text-decoration: none; color: inherit;"><span aria-hidden="true">&times;</span></a>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                <form method="post" id="myForm1">
+                                    <!-- Your form fields here -->
+                                    <div class="form-group">
+                                        <label for="email_name">Template Name:</label>
+                                        <input type="text" id="email_name" name="email_name" class="form-control" required>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="email_subject">Email Subject:</label>
+                                        <input type="text" id="email_subject" name="email_subject" class="form-control" required>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="email_keyword"> Email Keywords:</label>
+                                        <input type="text" id="email_keyword" name="email_keyword" class="form-control" required>
+                                    </div>
+
+                                    <h3>Type:</h3>
+                                    <div class="form-group">
+                                        <input type="radio" id="custom_email" name="email_type" value="custom" class="radio_box" required checked>
+                                            <label for="short">Custom Eamil</label>&nbsp;
+                                        <input type="radio" id="cold_outreach_email" name="email_type" value="cold" class="radio_box" required>
+                                            <label for="medium">Cold Outreach Email</label>&nbsp;  
+                                        <input type="radio" id="follow_up_email" name="email_type" value="follow" class="radio_box" required>
+                                            <label for="long">Follow Up</label>&nbsp;
+                                        <input type="radio" id="promotional_email" name="email_type" value="promotional" class="radio_box" required>
+                                            <label for="long">Promotional Email</label>
+                                    </div>
+
+                                    <h3>Length:</h3>
+                                    <div class="form-group">
+                                        <input type="radio" id="short" name="email_length" value="short" class="radio_box" required checked>
+                                            <label for="short">Short</label>&nbsp;
+                                        <input type="radio" id="medium" name="email_length" value="medium" class="radio_box" required>
+                                            <label for="medium">Medium</label>&nbsp;
+                                        <input type="radio" id="long" name="email_length" value="long" class="radio_box" required>
+                                            <label for="long">Long</label>
+                                        <input type="hidden" id="sign_pk_data">
+                                    </div>
+
+                                    <button type="submit" class="btn btn-primary">Submit</button>
+                                    <!-- <button type="button" class="btn btn-danger" id="deleteTemplate">Delete</button> -->
+                                    <button type="button" class="btn btn-danger" id="deleteTemplate" style="display: none;">Delete</button>
+                                    <button type="button" class="btn btn-success" id="generateButtonEmail" style="display: none;">Use this Template</button>
+
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!--  Custom Modal -->
+                <div id="custom_pop_up" class="modal fade">
+                    <div class="modal-dialog modal-dialog-centered">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title">Pop-up Form</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <a href="{% url 'saved_templates' %}" style="text-decoration: none; color: inherit;"><span aria-hidden="true">&times;</span></a>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                <form method="post" id="myForm2">
+                                    <!-- Your form fields here -->
+                                    <div class="form-group">
+                                        <label for="custom_name">Template Name:</label>
+                                        <input type="text" id="custom_name" name="custom_name" class="form-control" required>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="custom_keyword">Keywords:</label>
+                                        <input type="text" id="custom_keyword" name="custom_keyword" class="form-control" required>
+                                    </div>
+
+                                    <h3>Length:</h3>
+                                    <div class="form-group">
+                                        <input type="radio" id="custom_short" name="custom_length" value="short" class="radio_box" required checked>
+                                            <label for="custom_short">Short</label>&nbsp;
+                                        <input type="radio" id="custom_medium" name="custom_length" value="medium" class="radio_box" required>
+                                            <label for="custom_medium">Medium</label>&nbsp;
+                                        <input type="radio" id="custom_long" name="custom_length" value="long" class="radio_box" required>
+                                            <label for="custom_long">Long</label>
+                                        <input type="hidden" id="sign_pk_data">
+                                    </div>
+
+                                    <button type="submit" class="btn btn-primary">Submit</button>
+                                    <!-- <button type="button" class="btn btn-danger" id="deleteTemplate">Delete</button> -->
+                                    <button type="button" class="btn btn-danger" id="deleteTemplate" style="display: none;">Delete</button>
+                                    <button type="button" class="btn btn-success" id="generateButton" style="display: none;">Use this Template</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+
+                <div class="blog-wrapper bg-white p-50 save-wrapper">
+                    <!-- <a href="#" id="openPopup"> -->
+
+                    <div class="row h-100">
+                        <div class="col-md-4 h-100 border-0" id="temp1">
+                            <div class="mb-3 py-2 px-3 blog-title fw-medium d-flex justify-content-between align-items-center rounded-2">
+                                <span class="mr-2">Blog/Essay</span>
+                                <a href="#" id="openPopup">
+                                <button type="button" class="btn btn-sm btn-primary">+</button>
+                                </a>
+                            </div>
+                            <div class="bg-light rounded-3 p-1 minh-400">
+                                {% if templates %}
+                                {% for i in templates %}
+                                <a href="#" class="template-link" data-id="{{ i.get_sign_pk }}" style="text-decoration: none; color: inherit;">
+
+                                    <div class="p-20 bg-white rounded-2 mb-2">
+                                        <div class="d-flex justify-content-between align-items-center mb-3">
+                                            <h3>{{ i.blog_template }}</h3>
+                                            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                <path d="M8 10C9.10457 10 10 9.10457 10 8C10 6.89543 9.10457 6 8 6C6.89543 6 6 6.89543 6 8C6 9.10457 6.89543 10 8 10Z" fill="#737791"/>
+                                                <path d="M8 16C9.10457 16 10 15.1046 10 14C10 12.8954 9.10457 12 8 12C6.89543 12 6 12.8954 6 14C6 15.1046 6.89543 16 8 16Z" fill="#737791"/>
+                                                <path d="M8 4C9.10457 4 10 3.10457 10 2C10 0.89543 9.10457 0 8 0C6.89543 0 6 0.89543 6 2C6 3.10457 6.89543 4 8 4Z" fill="#737791"/>
+                                            </svg>
+                                        </div>
+                                        <p>Subject : {{ i.blog_subject }}</p>
+                                        <p>Length :{{ i.blog_length }}</p>
+                                        <p>Keywords :{{ i.blog_keywords }}</p>
+                                    </div>
+                                </a>
+                                
+                                {% endfor %}
+                                {% else %}
+                                <p>No saved templates</p>
+                                {% endif %}
+
+                            </div>
+                        </div>
+                        <div class="col-md-4 h-100 border-0">
+                            <div class="mb-3 py-2 px-3 email-title fw-medium d-flex justify-content-between align-items-center rounded-2">
+                                <span class="mr-2">Email Writing</span>
+                                <a href="#" id="emailPopup">
+                                    <button type="button" class="btn btn-sm btn-primary">+</button>
+                                </a>
+                            </div>
+
+                            <div class="bg-light rounded-3 p-1 minh-400">
+                                {% if emailtemplates %}
+
+                                {% for e in emailtemplates %}
+                                <a href="#" class="email-link" data-id="{{ e.get_sign_pk }}" style="text-decoration: none; color: inherit;">
+                                <div class="p-20 bg-white rounded-2 mb-2">
+                                    <div class="d-flex justify-content-between align-items-center mb-3">
+                                        <h3>{{ e.template_name }}</h3>
+                                        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M8 10C9.10457 10 10 9.10457 10 8C10 6.89543 9.10457 6 8 6C6.89543 6 6 6.89543 6 8C6 9.10457 6.89543 10 8 10Z" fill="#737791"/>
+                                            <path d="M8 16C9.10457 16 10 15.1046 10 14C10 12.8954 9.10457 12 8 12C6.89543 12 6 12.8954 6 14C6 15.1046 6.89543 16 8 16Z" fill="#737791"/>
+                                            <path d="M8 4C9.10457 4 10 3.10457 10 2C10 0.89543 9.10457 0 8 0C6.89543 0 6 0.89543 6 2C6 3.10457 6.89543 4 8 4Z" fill="#737791"/>
+                                        </svg>
+                                    </div>
+                                    <p>Subject:{{ e.email_subject }}</p>
+                                    <p>Email Type:{{ e.email_type }}</p>
+                                    <p>Length :{{ e.email_length }}</p>
+                                    <p>Keywords :{{ e.email_keywords }}</p>
+                            </div>
+                        </a>
+                            {% endfor %}
+                            {% else %}
+                            <p>No saved templates</p>
+                            {% endif %}
+
+                            </div>
+                        </div>
+
+
+                        <div class="col-md-4 h-100 border-0">
+                            <div class="mb-3 py-2 px-3 custom-title fw-medium d-flex justify-content-between align-items-center rounded-2">
+                                <span class="mr-2">Custom Content</span>
+                                <a href="#" id="customPopup">
+                                    <button type="button" class="btn btn-sm btn-primary">+</button>
+                                </a>
+                        </div>
+
+                            <div class="bg-light rounded-3 p-1 minh-400">
+                                {% if custom_template %}
+
+                                {% for e in custom_template %}
+                                <a href="#" class="custom-link" data-id="{{ e.get_sign_pk }}" style="text-decoration: none; color: inherit;">
+                                <div class="p-20 bg-white rounded-2 mb-2">
+                                    <div class="d-flex justify-content-between align-items-center mb-3">
+                                        <h3>{{ e.template_name }}</h3>
+                                        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M8 10C9.10457 10 10 9.10457 10 8C10 6.89543 9.10457 6 8 6C6.89543 6 6 6.89543 6 8C6 9.10457 6.89543 10 8 10Z" fill="#737791"/>
+                                            <path d="M8 16C9.10457 16 10 15.1046 10 14C10 12.8954 9.10457 12 8 12C6.89543 12 6 12.8954 6 14C6 15.1046 6.89543 16 8 16Z" fill="#737791"/>
+                                            <path d="M8 4C9.10457 4 10 3.10457 10 2C10 0.89543 9.10457 0 8 0C6.89543 0 6 0.89543 6 2C6 3.10457 6.89543 4 8 4Z" fill="#737791"/>
+                                        </svg>
+                                    </div>
+                                    <p>Length :{{ e.custom_content_length }}</p>
+                                    <p>Keywords :{{ e.custom_content_keywords }}</p>
+
+                                </div>
+                                </a>
+                                {% endfor %}
+                                {% else %}
+                                <p>No saved templates</p>
+                                {% endif %}
+
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        // Get the div element
+        var divElement = document.getElementById("openPopup");
+    
+        // Get the modal
+        var modal = document.getElementById("popupForm");
+    
+        // Add click event listener to the div
+        divElement.addEventListener("click", function() {
+            // Show the modal
+            $(modal).modal('show');
+        });
+    });
+    
+    
+</script>
+
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+            // Get the modal
+            var modal = document.getElementById("popupForm");
+
+            // Initialize templateId variable outside the click event listener
+            var templateId;
+
+            // Get all template links
+            var templateLinks = document.querySelectorAll(".template-link");
+            var deleteButton = modal.querySelector("#deleteTemplate");
+            var generateButton = document.getElementById("generateButtonBlog");
+
+            var sign_pk_data = document.getElementById("sign_pk_data");
+
+            // Add click event listener to the "Generate" button
+            generateButton.addEventListener("click", function () {
+                    // Serialize form data
+                    var formData = new FormData(form);
+                    for (var pair of formData.entries()) {
+                    }
+                    // Redirect to another page with form data as URL parameters
+                    window.location.href = "/blog_writing/?id=" + sign_pk_data.value
+
+                });
+
+            // Add click event listener to the delete button
+            deleteButton.addEventListener("click", function () {
+                // Send a request to delete the template
+
+                fetch(`/delete_template_blog/${templateId}/`, {
+                    method: 'DELETE'
+                })
+                .then(response => {
+                    if (response.ok) {
+                        // If the deletion was successful, close the modal
+                        $(modal).modal('hide');
+                    } else {
+                        console.error('Failed to delete template');
+                    }
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                });
+            });
+
+
+            // Add click event listener to each template link
+            templateLinks.forEach(function (link) {
+                link.addEventListener("click", function (event) {
+                    event.preventDefault(); // Prevent the default link behavior
+
+                    // Get the template id
+                    templateId = link.getAttribute("data-id");
+
+                    if (templateId) {
+                        generateButton.style.display = "inline-block";
+                    }
+
+                    // Send a request to the server to fetch the template details
+                    fetch(`/get_template_details/${templateId}/`)
+                        .then(response => response.json())
+                        .then(data => {
+                        // Assign the received data to templateDetails
+                            var templateDetails = data;
+
+                            // Populate the modal fields with the template details
+                            document.getElementById("name").value = templateDetails.name;
+                            document.getElementById("subject").value = templateDetails.subject;
+                            document.getElementById("keyword").value = templateDetails.keyword;
+                            document.getElementById("sign_pk_data").value = templateDetails.sign_pk;
+                            document.querySelector("input[name=length][value=" + templateDetails.length + "]").checked = true;
+
+                            // Show the modal
+                            $(modal).modal('show');
+
+                            if (templateId) {
+                                    deleteButton.style.display = "inline-block"; // Show delete button
+                                } else {
+                                    deleteButton.style.display = "none"; // Hide delete button
+                                }
+                            })
+                    .catch(error => {
+                        console.error('Error:', error);
+                    });
+                });
+            });
+
+
+            // Get the form inside the modal
+            var form = modal.querySelector("#myForm");
+
+            // Add submit event listener to the form
+            form.addEventListener("submit", function (event) {
+                event.preventDefault(); // Prevent the default form submission behavior
+                // var templateId = link.getAttribute("data-id");
+
+                // Serialize form data
+                var formData = new FormData(form);
+                
+                if (templateId){
+                    url = `/saved_templates/${(templateId)}/`
+                } else {
+                    url = '/saved_templates/'
+                }
+
+                // Send the updated template details to the server
+                fetch(url, {
+                    method: 'POST',
+                    body: formData
+                })
+                .then(response => {
+                    if (response.ok) {
+                        // If the update was successful, close the modal
+                        $(modal).modal('hide');
+                    } else {
+                        console.error('Failed to update template');
+                    }
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                });
+            });
+                    // Add event listener for modal hidden event
+        $(modal).on('hidden.bs.modal', function () {
+            // Reload the page after hiding the modal
+            location.reload();
+        });
+});
+</script>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        // Get the div element
+        var divElement = document.getElementById("emailPopup");
+    
+        // Get the modal
+        var modal = document.getElementById("email_pop_up");
+    
+        // Add click event listener to the div
+        divElement.addEventListener("click", function() {
+            // Show the modal
+            $(modal).modal('show');
+        });
+    });
+</script>
+    
+
+<script>
+        document.addEventListener("DOMContentLoaded", function () {
+                // Get the modal
+                var modal = document.getElementById("email_pop_up");
+
+                // Initialize emailId variable outside the click event listener
+                var emailId;
+                // Get all template links
+                var templateLinks = document.querySelectorAll(".email-link");
+
+                var deleteButton = modal.querySelector("#deleteTemplate");
+                var generateButton = document.getElementById("generateButtonEmail");
+                var sign_pk_data = document.getElementById("sign_pk_data");
+
+
+
+
+                // Add click event listener to the "Generate" button
+                generateButton.addEventListener("click", function () {
+                    // Serialize form data
+                    var formData = new FormData(form);
+                    for (var pair of formData.entries()) {
+                        console.log(pair[0] + ': ' + pair[1]);
+                    }
+
+
+                    // Create query string from form data
+                    var queryString = new URLSearchParams(formData).toString();
+
+                    // Redirect to another page with form data as URL parameters
+                    window.location.href = "/email_writing/?id=" + sign_pk_data.value
+
+                });
+
+
+                // Add click event listener to the delete button
+                deleteButton.addEventListener("click", function () {
+                    // Send a request to delete the template
+                    fetch(`/delete_template_email/${emailId}/`, {
+                        method: 'DELETE'
+                    })
+                    .then(response => {
+                        if (response.ok) {
+                            // If the deletion was successful, close the modal
+                            $(modal).modal('hide');
+                        } else {
+                            console.error('Failed to delete template');
+                        }
+                    })
+                    .catch(error => {
+                        console.error('Error:', error);
+                    });
+                });
+
+                // Add click event listener to each template link
+                templateLinks.forEach(function (link) {
+                    link.addEventListener("click", function (event) {
+                        event.preventDefault(); // Prevent the default link behavior
+
+                        // Get the template id
+                        emailId = link.getAttribute("data-id");
+
+                         if (emailId) {
+                            generateButton.style.display = "inline-block";
+                        }
+
+                        // Send a request to the server to fetch the template details
+                        fetch(`/get_email_template_details/${emailId}/`)
+                            .then(response => response.json())
+                            .then(data => {
+                            // Assign the received data to templateDetails
+                                var templateDetails = data;
+                                
+
+                                // Populate the modal fields with the template details
+                                document.getElementById("email_name").value = templateDetails.name;
+                                document.getElementById("email_subject").value = templateDetails.subject;
+                                document.getElementById("email_keyword").value = templateDetails.keyword;
+                                document.querySelector("input[name=email_type][value=" + templateDetails.type + "]").checked = true;
+                                document.getElementById("sign_pk_data").value = templateDetails.sign_pk;
+                                document.querySelector("input[name=email_length][value=" + templateDetails.length + "]").checked = true;
+
+                                // Show the modal
+                                $(modal).modal('show');
+                                // Show or hide the delete button based on the presence of template ID
+                                if (emailId) {
+                                        deleteButton.style.display = "inline-block"; // Show delete button
+                                    } else {
+
+                                        deleteButton.style.display = "none"; // Hide delete button
+                                    }
+                                
+                                })
+                        .catch(error => {
+                            console.error('Error:', error);
+                        });
+                    });
+                });
+
+                // Get the form inside the modal
+            var form = modal.querySelector("#myForm1");
+
+            // Add submit event listener to the form
+            form.addEventListener("submit", function (event) {
+                event.preventDefault(); // Prevent the default form submission behavior
+                // var emailId = link.getAttribute("data-id");
+
+                // Serialize form data
+                var formData = new FormData(form);
+
+
+                if (emailId){
+                    url = `/update_email/${(emailId)}/`
+                } else {
+                    url = '/saved_email/'
+                }
+
+                // Send the updated template details to the server
+                fetch(url, {
+                    method: 'POST',
+                    body: formData
+                })
+                .then(response => {
+                    if (response.ok) {
+                        // If the update was successful, close the modal
+                        $(modal).modal('hide');
+                    } else {
+                        console.error('Failed to update template');
+                    }
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                });
+            });
+                    // Add event listener for modal hidden event
+        $(modal).on('hidden.bs.modal', function () {
+            // Reload the page after hiding the modal
+            location.reload();
+        });
+});
+
+</script>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        // Get the div element
+        var divElement = document.getElementById("customPopup");
+
+        // Get the modal
+        var modal = document.getElementById("custom_pop_up");
+
+        // Add click event listener to the div
+        divElement.addEventListener("click", function() {
+            // Show the modal
+            $(modal).modal('show');
+        });
+    });
+</script>
+
+<script>
+        document.addEventListener("DOMContentLoaded", function () {
+                // Get the modal
+                var modal = document.getElementById("custom_pop_up");
+
+                // Initialize customId variable outside the click event listener
+                var customId;
+                // Get all template links
+                var templateLinks = document.querySelectorAll(".custom-link");
+
+                var deleteButton = modal.querySelector("#deleteTemplate");
+                var generateButton = document.getElementById("generateButton");
+                var sign_pk_data = document.getElementById("sign_pk_data");
+
+                // Add click event listener to the "Generate" button
+                generateButton.addEventListener("click", function () {
+                    // Serialize form data
+                    var formData = new FormData(form);
+
+                    for (var pair of formData.entries()) {
+                        console.log(pair[0] + ': ' + pair[1]);
+                    }
+
+
+                    // Create query string from form data
+                    var queryString = new URLSearchParams(formData).toString();
+
+                    // Redirect to another page with form data as URL parameters
+                    window.location.href = "/custom_content/?id=" + sign_pk_data.value
+
+                });
+
+                // Add click event listener to the delete button
+                deleteButton.addEventListener("click", function () {
+                    // Send a request to delete the template
+                    fetch(`/delete_template_custom/${customId}/`, {
+                        method: 'DELETE'
+                    })
+                    .then(response => {
+                        if (response.ok) {
+                            // If the deletion was successful, close the modal
+                            $(modal).modal('hide');
+                        } else {
+                            console.error('Failed to delete template');
+                        }
+                    })
+                    .catch(error => {
+                        console.error('Error:', error);
+                    });
+                });
+
+                // Add click event listener to each template link
+                templateLinks.forEach(function (link) {
+                    link.addEventListener("click", function (event) {
+                        event.preventDefault(); // Prevent the default link behavior
+
+                        // Get the template id
+                        customId = link.getAttribute("data-id");
+
+                         if (customId) {
+                        generateButton.style.display = "inline-block";
+                    }
+
+                        // Send a request to the server to fetch the template details
+                        fetch(`/get_custom_content_details/${customId}/`)
+                            .then(response => response.json())
+                            .then(data => {
+                            // Assign the received data to templateDetails
+                                var templateDetails = data;
+
+                                // Populate the modal fields with the template details
+                                document.getElementById("custom_name").value = templateDetails.name;
+                                document.getElementById("custom_keyword").value = templateDetails.keyword;
+                                document.getElementById("sign_pk_data").value = templateDetails.sign_pk;
+                                document.querySelector("input[name=custom_length][value=" + templateDetails.length + "]").checked = true;
+
+                                // Show the modal
+                                $(modal).modal('show');
+
+                                if (customId) {
+                                        deleteButton.style.display = "inline-block"; // Show delete button
+                                    } else {
+
+                                        deleteButton.style.display = "none"; // Hide delete button
+                                    }
+
+                                })
+                        .catch(error => {
+                            console.error('Error:', error);
+                        });
+                    });
+                });
+
+                // Get the form inside the modal
+            var form = modal.querySelector("#myForm2");
+
+            // Add submit event listener to the formdelete_template_blog
+            form.addEventListener("submit", function (event) {
+                event.preventDefault(); // Prevent the default form submission behavior
+                // var customId = link.getAttribute("data-id");
+
+                // Serialize form data
+                var formData = new FormData(form);
+
+                if (customId){
+                    url = `/update_custom_content/${customId}/`
+                } else {
+                    url = '/saved_custom_content/'
+                }
+
+                // Send the updated template details to the server
+                fetch(url, {
+                    method: 'POST',
+                    body: formData
+                })
+                .then(response => {
+                    if (response.ok) {
+                        // If the update was successful, close the modal
+                        $(modal).modal('hide');
+                    } else {
+                        console.error('Failed to update template');
+                    }
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                });
+            });
+                    // Add event listener for modal hidden event
+        $(modal).on('hidden.bs.modal', function () {
+            // Reload the page after hiding the modal
+            location.reload();
+        });
+});
+
+</script> 
+    
+    
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <!-- <script src="script.js"></script> -->
+
+{% endblock %}
