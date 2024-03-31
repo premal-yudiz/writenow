@@ -126,6 +126,7 @@ load_dotenv()
 # }
 
 # FORCE_SCRIPT_NAME = '/writenowio'
+
 # STATIC_URL = FORCE_SCRIPT_NAME + '/static/'
 # MEDIA_URL = FORCE_SCRIPT_NAME + '/media/
 
@@ -167,7 +168,7 @@ USE_TZ = True
 
 STATIC_URL = 'static/'
 
-STATIC_ROOT = BASE_DIR / "staticfiles" 
+# STATIC_ROOT = BASE_DIR / "staticfiles" 
 
 
 STATICFILES_DIRS = [
