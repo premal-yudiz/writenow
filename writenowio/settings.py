@@ -75,8 +75,8 @@ MIDDLEWARE = [
 
     'social_django.middleware.SocialAuthExceptionMiddleware',
 
-    'app.middleware.LoginRequiredMiddleware',
-    'app.middleware.LoginExistMiddleware'
+    # 'app.middleware.LoginRequiredMiddleware',
+    # 'app.middleware.LoginExistMiddleware'
 ]
 
 ROOT_URLCONF = 'writenowio.urls'
